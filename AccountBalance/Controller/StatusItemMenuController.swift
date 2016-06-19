@@ -12,6 +12,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     @IBOutlet weak var statusItemMenu: NSMenu!
     
+    @IBOutlet weak var accountView: AccountView!
     @IBOutlet weak var refreshButton: NSMenuItem!
     @IBOutlet weak var loginButton: NSMenuItem!
     @IBOutlet weak var logoutButton: NSMenuItem!
@@ -32,7 +33,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         statusItem.menu = statusItemMenu
     
         loginWindowController = LoginWindowController()
-//        loginWindowController.delegate = self
+        loginWindowController.delegate = self
         
         updateAccountBalance()
     }
@@ -59,6 +60,8 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
 
         statusItem.image = nil
         statusItem.title = accountBalance.currentBalance
+        
+        accountView.update(accountBalance)
     }
     
     func clearAccountBalanceInStatusItem() {

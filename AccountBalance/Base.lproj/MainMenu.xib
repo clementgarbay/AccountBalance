@@ -16,6 +16,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <objectController id="NXH-2N-bhe" customClass="StatusItemMenuController" customModule="AccountBalance" customModuleProvider="target">
             <connections>
+                <outlet property="accountView" destination="eKf-qu-ygO" id="uyi-qU-Qyg"/>
                 <outlet property="loginButton" destination="6PJ-0g-RAi" id="nXy-57-Xpb"/>
                 <outlet property="logoutButton" destination="8tQ-ZU-MOB" id="CZ3-4X-UO0"/>
                 <outlet property="refreshButton" destination="v51-tt-yuF" id="jYy-mJ-MvO"/>
@@ -706,7 +707,7 @@
             </items>
             <point key="canvasLocation" x="604" y="294.5"/>
         </menu>
-        <view wantsLayer="YES" id="eKf-qu-ygO" userLabel="Account View">
+        <view wantsLayer="YES" id="eKf-qu-ygO" userLabel="Account View" customClass="AccountView" customModule="AccountBalance" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -731,6 +732,10 @@
                     </textFieldCell>
                 </textField>
             </subviews>
+            <connections>
+                <outlet property="providerImage" destination="oYz-XX-8NM" id="Pba-5C-bWU"/>
+                <outlet property="userLabel" destination="4vm-NF-LhW" id="fJH-ym-i2u"/>
+            </connections>
             <point key="canvasLocation" x="301" y="229"/>
         </view>
     </objects>

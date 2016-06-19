@@ -13,8 +13,8 @@ class AppPreferences {
     
     static let sharedInstance = AppPreferences()
     
-    let preferences = NSUserDefaults.standardUserDefaults()
-    let keychain = KeychainSwift()
+    private let preferences = NSUserDefaults.standardUserDefaults()
+    private let keychain = KeychainSwift()
     
     private init() {}
     
@@ -84,6 +84,12 @@ class AppPreferences {
         let appDomain = NSBundle.mainBundle().bundleIdentifier!
         preferences.removePersistentDomainForName(appDomain)
         keychain.clear()
+    }
+    
+    // MARK: - Getters
+    
+    func getProvider() -> Provider {
+        return Provider.getProviderFromId(self.preferences.integerForKey("provider"))!
     }
     
 }

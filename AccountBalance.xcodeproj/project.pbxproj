@@ -19,6 +19,7 @@
 		7C025DD41D15E893007B50B1 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DD31D15E893007B50B1 /* AccountBalance.swift */; };
 		7C025DDA1D15EA0B007B50B1 /* AccountBalanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DD91D15EA0B007B50B1 /* AccountBalanceDelegate.swift */; };
 		7C025DDE1D16D406007B50B1 /* LoginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C025DDC1D16D406007B50B1 /* LoginWindow.xib */; };
+		7C025DE01D16D857007B50B1 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DDF1D16D857007B50B1 /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		7C025DD31D15E893007B50B1 /* AccountBalance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountBalance.swift; path = Model/AccountBalance.swift; sourceTree = "<group>"; };
 		7C025DD91D15EA0B007B50B1 /* AccountBalanceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountBalanceDelegate.swift; path = Protocol/AccountBalanceDelegate.swift; sourceTree = "<group>"; };
 		7C025DDC1D16D406007B50B1 /* LoginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginWindow.xib; sourceTree = "<group>"; };
+		7C025DDF1D16D857007B50B1 /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountView.swift; path = Model/AccountView.swift; sourceTree = "<group>"; };
 		9904D053117FCB091C0183C7 /* Pods_AccountBalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AccountBalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 			children = (
 				7C025DD31D15E893007B50B1 /* AccountBalance.swift */,
 				7C025DC41D156EC2007B50B1 /* Provider.swift */,
+				7C025DDF1D16D857007B50B1 /* AccountView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				7C025DC21D156EA7007B50B1 /* AppPreferences.swift in Sources */,
 				7C025DAE1D156DB8007B50B1 /* AppDelegate.swift in Sources */,
 				7C025DCA1D1571E2007B50B1 /* StatusItemMenuController.swift in Sources */,
+				7C025DE01D16D857007B50B1 /* AccountView.swift in Sources */,
 				7C025DDA1D15EA0B007B50B1 /* AccountBalanceDelegate.swift in Sources */,
 				7C025DC01D156E85007B50B1 /* Service.swift in Sources */,
 			);

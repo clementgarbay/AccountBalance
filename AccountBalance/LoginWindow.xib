@@ -69,6 +69,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="login:" target="-2" id="p5w-r6-GVb"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-kM-3p3" userLabel="Username Label">
                         <rect key="frame" x="21" y="153" width="65" height="17"/>

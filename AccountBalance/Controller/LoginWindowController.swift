@@ -76,7 +76,7 @@ class LoginWindowController: NSWindowController {
                 self.resetLoginForm()
                 
                 self.delegate?.accountBalanceDidUpdate(accountBalance)
-                self.dismissController(self)
+                self.window?.setIsVisible(false)
             }
         )
     }

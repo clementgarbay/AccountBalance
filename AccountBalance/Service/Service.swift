@@ -10,51 +10,64 @@ import Foundation
 import Alamofire
 import KeychainSwift
 
-enum AccountBalanceAPIError: ErrorType {
+enum RequestError: ErrorType {
     case Unauthorized
     case Other(NSError)
+    
+    static func fromNSError(error: NSError) -> RequestError {
+        return error.userInfo["StatusCode"]
+            .map({(e: AnyObject) -> Int in e as! Int})
+            .map({ e in
+                switch e {
+                case 404:
+                    return RequestError.Unauthorized
+                default:
+                    return RequestError.Other(error)
+                }
+            }) ?? RequestError.Other(error)
+    }
 }
 
 class Service {
-    static let BASE_URL = "https://api.clementgarbay.fr/accountbalance/" // "http://localhost:8125/"
+    static let BASE_URL = "http://localhost:8125/" // "https://api.clementgarbay.fr/accountbalance/"
     static let preferences = AppPreferences.sharedInstance
     
     static func fetchData(
-        failure fail :      (AccountBalanceAPIError -> ())? = nil,
-                success succeed:    (AccountBalance -> ())? = nil
-        ) {
+        failure fail: (RequestError -> ())? = nil,
+        success succeed: (AccountBalance -> ())? = nil
+    ) {
         
         if self.preferences.hasLoggedAccount() {
             let preferencesForRequest = self.preferences.getPreferencesForRequest()
             
             if preferencesForRequest != nil {
-                let identifier = preferencesForRequest!["identifier"] as! String
+                let email = preferencesForRequest!["email"] as! String
                 let password = preferencesForRequest!["password"] as! String
                 let provider = preferencesForRequest!["provider"] as! Provider
                 
-                fetchData(identifier, password: password, provider: provider, failure: { error in
+                fetchData(email, password: password, provider: provider, failure: { error in
                     fail!(error)
                 }) { accountBalance in
                     succeed!(accountBalance)
                 }
             } else {
-                fail!(AccountBalanceAPIError.Unauthorized)
+                fail!(RequestError.Unauthorized)
             }
         } else {
-            fail!(AccountBalanceAPIError.Unauthorized)
+            fail!(RequestError.Unauthorized)
         }
     }
     
     static func fetchData(
-        identifier:         String,
-        password:           String,
-        provider:           Provider,
-        failure fail:       (AccountBalanceAPIError -> ())? = nil,
-                success succeed:    (AccountBalance -> ())? = nil
-        ) {
+        email: String,
+        password: String,
+        provider: Provider,
+        failure fail: (RequestError -> ())? = nil,
+        success succeed: (AccountBalance -> ())? = nil
+    ) {
         
         let parameters: [String: AnyObject] = [
-            "identifier" : identifier,
+            "identifier" : email,
             "password" : password,
             "provider" : provider.rawValue
         ]
@@ -71,17 +84,12 @@ class Service {
                     
                     // Save user informations
                     if !self.preferences.hasLoggedAccount() {
-                        self.preferences.set(accountBalance.username, email: identifier, password: password, provider: provider)
+                        self.preferences.set(accountBalance.username, email: email, password: password, provider: provider)
                     }
                     
                     succeed!(accountBalance)
                 case .Failure(let error):
-                    let statusCode = error.userInfo["StatusCode"] as! Int
-                    if statusCode == 401 {
-                        fail!(AccountBalanceAPIError.Unauthorized)
-                    } else {
-                        fail!(AccountBalanceAPIError.Other(error))
-                    }
+                    fail!(RequestError.fromNSError(error))
                 }
         }
     }
