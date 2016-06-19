@@ -1,4 +1,4 @@
-# Solde de compte
+# Solde de compte [![Build Status](https://travis-ci.com/clementgarbay/AccountBalanceApp.svg?token=5gzYFK2W5itTwJeTvDJz&branch=master)](https://travis-ci.com/clementgarbay/AccountBalanceApp)
 
 Affiches directement le solde de ton compte dans la barre des menus de ton Mac.
 
