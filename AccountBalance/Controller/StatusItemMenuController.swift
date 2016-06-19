@@ -50,7 +50,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         statusItem.title = ""
         statusItem.image = refreshIcon
         
-        detailMenuItemView.showMessageView("Rafraîchissement en cours...", messageType: MessageType.Info)
+        detailMenuItemView.showMessageView("Rafraîchissement en cours...", messageType: .Info)
     }
     
     func showAccountBalanceInStatusItem(accountBalance: AccountBalance) {
@@ -87,9 +87,9 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
                     self.showLoginWindow()
                 case .Other(let error):
                     if let message = error.userInfo["NSLocalizedDescription"] as? String {
-                        self.detailMenuItemView.showMessageView(message, messageType: MessageType.Error)
+                        self.detailMenuItemView.showMessageView(message, messageType: .Error)
                     } else {
-                        self.detailMenuItemView.showMessageView("Erreur lors du rafraîchissement du solde", messageType: MessageType.Error)
+                        self.detailMenuItemView.showMessageView("Erreur lors du rafraîchissement du solde", messageType: .Error)
                     }
                     print(error)
                 }

@@ -17,7 +17,7 @@ enum MessageType {
         case .Info:
             return NSColor.blackColor()
         case .Error:
-            return NSColor(red: 146, green: 19, blue: 10, alpha: 1)
+            return NSColor.redColor()
         }
     }
 }
