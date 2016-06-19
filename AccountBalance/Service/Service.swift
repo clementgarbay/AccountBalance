@@ -29,7 +29,7 @@ enum RequestError: ErrorType {
 }
 
 class Service {
-    static let BASE_URL = "http://localhost:8125/" // "https://api.clementgarbay.fr/accountbalance/"
+    static let BASE_URL = "https://api.clementgarbay.fr/accountbalance/" // "http://localhost:8125/"
     static let preferences = AppPreferences.sharedInstance
     
     static func fetchData(
