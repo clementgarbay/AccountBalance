@@ -12,9 +12,8 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     @IBOutlet weak var statusItemMenu: NSMenu!
     
-    @IBOutlet weak var accountView: AccountView!
+    @IBOutlet weak var accountViewMenuItem: AccountView!
     @IBOutlet weak var refreshButton: NSMenuItem!
-    @IBOutlet weak var loginButton: NSMenuItem!
     @IBOutlet weak var logoutButton: NSMenuItem!
     
     private var statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
@@ -55,19 +54,17 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     func showAccountBalanceInStatusItem(accountBalance: AccountBalance) {
         refreshButton.enabled = true
         refreshButton.hidden = false
-        loginButton.hidden = true
         logoutButton.hidden = false
 
         statusItem.image = nil
         statusItem.title = accountBalance.currentBalance
         
-        accountView.update(accountBalance)
+        accountViewMenuItem.update(accountBalance)
     }
     
     func clearAccountBalanceInStatusItem() {
         refreshButton.enabled = false
         refreshButton.hidden = true
-        loginButton.hidden = false
         logoutButton.hidden = true
         
         statusItem.title = ""
@@ -102,7 +99,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     // MARK: - IBAction
     
-    @IBAction func showLoginWindow(sender: NSMenuItem) {
+    @IBAction func showLoginWindow(sender: NSButton) {
         showLoginWindow()
     }
 
@@ -110,6 +107,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         // Clear saved preferences and reset app to the init state
         preferences.clear()
         clearAccountBalanceInStatusItem()
+        accountViewMenuItem.showLoginView()
         showLoginWindow()
     }
     

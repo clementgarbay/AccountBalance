@@ -26,6 +26,7 @@ class LoginWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        loader.startAnimation(nil)
         providerList.addItemsWithTitles(Provider.getAllProvidersValues())
         
         self.window?.center()

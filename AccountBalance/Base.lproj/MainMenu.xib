@@ -16,10 +16,9 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <objectController id="NXH-2N-bhe" customClass="StatusItemMenuController" customModule="AccountBalance" customModuleProvider="target">
             <connections>
-                <outlet property="accountView" destination="eKf-qu-ygO" id="uyi-qU-Qyg"/>
-                <outlet property="loginButton" destination="6PJ-0g-RAi" id="nXy-57-Xpb"/>
+                <outlet property="accountViewMenuItem" destination="eKf-qu-ygO" id="6oH-cu-L7h"/>
                 <outlet property="logoutButton" destination="8tQ-ZU-MOB" id="CZ3-4X-UO0"/>
-                <outlet property="refreshButton" destination="v51-tt-yuF" id="jYy-mJ-MvO"/>
+                <outlet property="refreshButton" destination="v51-tt-yuF" id="gwm-f8-jUd"/>
                 <outlet property="statusItemMenu" destination="2JG-Lg-Adc" id="vaO-Bg-fOn"/>
             </connections>
         </objectController>
@@ -681,12 +680,6 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Gbc-zs-RrC"/>
-                <menuItem title="Connexion..." id="6PJ-0g-RAi" userLabel="Login Item">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showLoginWindow:" target="NXH-2N-bhe" id="zML-du-PFY"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Rafraîchir mon solde" hidden="YES" keyEquivalent="r" id="v51-tt-yuF" userLabel="Refresh Item">
                     <connections>
                         <action selector="refresh:" target="NXH-2N-bhe" id="dc7-i2-DJq"/>
@@ -711,32 +704,54 @@
             <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oYz-XX-8NM">
-                    <rect key="frame" x="20" y="3" width="36" height="36"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="LoggedIcon" id="HYt-9P-bWC"/>
-                </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T1j-cx-qfJ">
-                    <rect key="frame" x="70" y="22" width="150" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Connecté en tant que" id="cdA-qy-9Cf">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4vm-NF-LhW" userLabel="User Label">
-                    <rect key="frame" x="70" y="3" width="150" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="-" id="MWG-fl-QFX">
-                        <font key="font" metaFont="systemSemibold" size="13"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
+                <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jIR-St-9it" userLabel="Account View">
+                    <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oYz-XX-8NM">
+                            <rect key="frame" x="20" y="3" width="36" height="36"/>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="LoggedIcon" id="HYt-9P-bWC"/>
+                        </imageView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T1j-cx-qfJ">
+                            <rect key="frame" x="70" y="20" width="150" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Connecté en tant que" id="cdA-qy-9Cf">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4vm-NF-LhW" userLabel="User Label">
+                            <rect key="frame" x="70" y="3" width="150" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="-" id="MWG-fl-QFX">
+                                <font key="font" metaFont="systemSemibold" size="13"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                </customView>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pkr-RS-s52" userLabel="Login View">
+                    <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAa-RT-hny">
+                            <rect key="frame" x="14" y="4" width="210" height="32"/>
+                            <buttonCell key="cell" type="push" title="Connexion..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rlY-1D-xeF">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showLoginWindow:" target="NXH-2N-bhe" id="rDK-Yy-E9N"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </customView>
             </subviews>
             <connections>
+                <outlet property="accountView" destination="jIR-St-9it" id="EBf-sC-WSG"/>
+                <outlet property="loginView" destination="Pkr-RS-s52" id="Ejn-tq-obq"/>
                 <outlet property="providerImage" destination="oYz-XX-8NM" id="Pba-5C-bWU"/>
                 <outlet property="userLabel" destination="4vm-NF-LhW" id="fJH-ym-i2u"/>
             </connections>
-            <point key="canvasLocation" x="301" y="229"/>
+            <point key="canvasLocation" x="306" y="235"/>
         </view>
     </objects>
     <resources>
