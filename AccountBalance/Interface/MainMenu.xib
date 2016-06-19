@@ -16,7 +16,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <objectController id="NXH-2N-bhe" customClass="StatusItemMenuController" customModule="AccountBalance" customModuleProvider="target">
             <connections>
-                <outlet property="accountViewMenuItem" destination="eKf-qu-ygO" id="6oH-cu-L7h"/>
+                <outlet property="detailMenuItemView" destination="eKf-qu-ygO" id="b6u-8z-8P5"/>
                 <outlet property="logoutButton" destination="8tQ-ZU-MOB" id="CZ3-4X-UO0"/>
                 <outlet property="refreshButton" destination="v51-tt-yuF" id="gwm-f8-jUd"/>
                 <outlet property="statusItemMenu" destination="2JG-Lg-Adc" id="vaO-Bg-fOn"/>
@@ -698,12 +698,25 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="604" y="294.5"/>
+            <point key="canvasLocation" x="-401" y="-692.5"/>
         </menu>
-        <view wantsLayer="YES" id="eKf-qu-ygO" userLabel="Account View" customClass="AccountView" customModule="AccountBalance" customModuleProvider="target">
+        <view wantsLayer="YES" id="eKf-qu-ygO" userLabel="Detail Menu Item" customClass="DetailMenuItemView" customModule="AccountBalance" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ID-y3-you" userLabel="Message View">
+                    <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Gw-QL-SvI" userLabel="Message Label">
+                            <rect key="frame" x="18" y="3" width="202" height="37"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="-" id="hg4-tc-PjL">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                </customView>
                 <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jIR-St-9it" userLabel="Account View">
                     <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
                     <subviews>
@@ -733,10 +746,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="238" height="42"/>
                     <subviews>
                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAa-RT-hny">
-                            <rect key="frame" x="14" y="4" width="210" height="32"/>
-                            <buttonCell key="cell" type="push" title="Connexion..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rlY-1D-xeF">
+                            <rect key="frame" x="20" y="11" width="198" height="19"/>
+                            <buttonCell key="cell" type="roundRect" title="Connexion..." bezelStyle="roundedRect" alignment="center" borderStyle="border" inset="2" id="rlY-1D-xeF">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="cellTitle"/>
                             </buttonCell>
                             <connections>
                                 <action selector="showLoginWindow:" target="NXH-2N-bhe" id="rDK-Yy-E9N"/>
@@ -748,10 +761,12 @@
             <connections>
                 <outlet property="accountView" destination="jIR-St-9it" id="EBf-sC-WSG"/>
                 <outlet property="loginView" destination="Pkr-RS-s52" id="Ejn-tq-obq"/>
+                <outlet property="messageLabel" destination="6Gw-QL-SvI" id="Bq4-aj-Omo"/>
+                <outlet property="messageView" destination="4ID-y3-you" id="wpA-uk-7Rb"/>
                 <outlet property="providerImage" destination="oYz-XX-8NM" id="Pba-5C-bWU"/>
                 <outlet property="userLabel" destination="4vm-NF-LhW" id="fJH-ym-i2u"/>
             </connections>
-            <point key="canvasLocation" x="306" y="235"/>
+            <point key="canvasLocation" x="-699" y="-752"/>
         </view>
     </objects>
     <resources>

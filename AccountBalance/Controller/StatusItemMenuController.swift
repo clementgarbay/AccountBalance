@@ -12,7 +12,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     @IBOutlet weak var statusItemMenu: NSMenu!
     
-    @IBOutlet weak var accountViewMenuItem: AccountView!
+    @IBOutlet weak var detailMenuItemView: DetailMenuItemView!
     @IBOutlet weak var refreshButton: NSMenuItem!
     @IBOutlet weak var logoutButton: NSMenuItem!
     
@@ -49,6 +49,8 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         refreshButton.enabled = false
         statusItem.title = ""
         statusItem.image = refreshIcon
+        
+        detailMenuItemView.showMessageView("Rafraîchissement en cours...", messageType: MessageType.Info)
     }
     
     func showAccountBalanceInStatusItem(accountBalance: AccountBalance) {
@@ -59,7 +61,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         statusItem.image = nil
         statusItem.title = accountBalance.currentBalance
         
-        accountViewMenuItem.update(accountBalance)
+        detailMenuItemView.showAccountView(accountBalance)
     }
     
     func clearAccountBalanceInStatusItem() {
@@ -84,6 +86,11 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
                 case .Unauthorized:
                     self.showLoginWindow()
                 case .Other(let error):
+                    if let message = error.userInfo["NSLocalizedDescription"] as? String {
+                        self.detailMenuItemView.showMessageView(message, messageType: MessageType.Error)
+                    } else {
+                        self.detailMenuItemView.showMessageView("Erreur lors du rafraîchissement du solde", messageType: MessageType.Error)
+                    }
                     print(error)
                 }
             },
@@ -95,6 +102,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     private func showLoginWindow() {
         loginWindowController.showWindow(nil)
+        detailMenuItemView.showLoginView()
     }
     
     // MARK: - IBAction
@@ -107,7 +115,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         // Clear saved preferences and reset app to the init state
         preferences.clear()
         clearAccountBalanceInStatusItem()
-        accountViewMenuItem.showLoginView()
+        detailMenuItemView.showLoginView()
         showLoginWindow()
     }
     

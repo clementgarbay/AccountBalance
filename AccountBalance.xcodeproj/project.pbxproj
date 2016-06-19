@@ -10,7 +10,6 @@
 		7641F595EC04129AAE66A18B /* Pods_AccountBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9904D053117FCB091C0183C7 /* Pods_AccountBalance.framework */; };
 		7C025DAE1D156DB8007B50B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DAD1D156DB8007B50B1 /* AppDelegate.swift */; };
 		7C025DB01D156DB8007B50B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C025DAF1D156DB8007B50B1 /* Assets.xcassets */; };
-		7C025DB31D156DB8007B50B1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C025DB11D156DB8007B50B1 /* MainMenu.xib */; };
 		7C025DC01D156E85007B50B1 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DBF1D156E85007B50B1 /* Service.swift */; };
 		7C025DC21D156EA7007B50B1 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DC11D156EA7007B50B1 /* AppPreferences.swift */; };
 		7C025DC51D156EC2007B50B1 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DC41D156EC2007B50B1 /* Provider.swift */; };
@@ -18,8 +17,9 @@
 		7C025DCE1D159F28007B50B1 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DCD1D159F28007B50B1 /* LoginWindowController.swift */; };
 		7C025DD41D15E893007B50B1 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DD31D15E893007B50B1 /* AccountBalance.swift */; };
 		7C025DDA1D15EA0B007B50B1 /* AccountBalanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DD91D15EA0B007B50B1 /* AccountBalanceDelegate.swift */; };
-		7C025DDE1D16D406007B50B1 /* LoginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C025DDC1D16D406007B50B1 /* LoginWindow.xib */; };
-		7C025DE01D16D857007B50B1 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DDF1D16D857007B50B1 /* AccountView.swift */; };
+		7C025DE51D170535007B50B1 /* DetailMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C025DE21D170535007B50B1 /* DetailMenuItemView.swift */; };
+		7C025DE61D170535007B50B1 /* LoginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C025DE31D170535007B50B1 /* LoginWindow.xib */; };
+		7C025DE71D170535007B50B1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C025DE41D170535007B50B1 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,6 @@
 		7C025DAA1D156DB8007B50B1 /* AccountBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C025DAD1D156DB8007B50B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C025DAF1D156DB8007B50B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7C025DB21D156DB8007B50B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7C025DB41D156DB8007B50B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C025DBF1D156E85007B50B1 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Service/Service.swift; sourceTree = "<group>"; };
 		7C025DC11D156EA7007B50B1 /* AppPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppPreferences.swift; path = Service/AppPreferences.swift; sourceTree = "<group>"; };
@@ -37,8 +36,9 @@
 		7C025DCD1D159F28007B50B1 /* LoginWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWindowController.swift; path = Controller/LoginWindowController.swift; sourceTree = "<group>"; };
 		7C025DD31D15E893007B50B1 /* AccountBalance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountBalance.swift; path = Model/AccountBalance.swift; sourceTree = "<group>"; };
 		7C025DD91D15EA0B007B50B1 /* AccountBalanceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountBalanceDelegate.swift; path = Protocol/AccountBalanceDelegate.swift; sourceTree = "<group>"; };
-		7C025DDC1D16D406007B50B1 /* LoginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginWindow.xib; sourceTree = "<group>"; };
-		7C025DDF1D16D857007B50B1 /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountView.swift; path = Model/AccountView.swift; sourceTree = "<group>"; };
+		7C025DE21D170535007B50B1 /* DetailMenuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailMenuItemView.swift; path = Interface/DetailMenuItemView.swift; sourceTree = "<group>"; };
+		7C025DE31D170535007B50B1 /* LoginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginWindow.xib; path = Interface/LoginWindow.xib; sourceTree = "<group>"; };
+		7C025DE41D170535007B50B1 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Interface/MainMenu.xib; sourceTree = "<group>"; };
 		9904D053117FCB091C0183C7 /* Pods_AccountBalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AccountBalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -92,14 +92,13 @@
 		7C025DAC1D156DB8007B50B1 /* AccountBalance */ = {
 			isa = PBXGroup;
 			children = (
+				7C025DE11D17039C007B50B1 /* Interface */,
 				7C025DD81D15E9F6007B50B1 /* Protocol */,
 				7C025DC81D1571BD007B50B1 /* Controller */,
 				7C025DC31D156EB4007B50B1 /* Model */,
 				7C025DBE1D156E77007B50B1 /* Service */,
 				7C025DAD1D156DB8007B50B1 /* AppDelegate.swift */,
 				7C025DAF1D156DB8007B50B1 /* Assets.xcassets */,
-				7C025DB11D156DB8007B50B1 /* MainMenu.xib */,
-				7C025DDC1D16D406007B50B1 /* LoginWindow.xib */,
 				7C025DB41D156DB8007B50B1 /* Info.plist */,
 			);
 			path = AccountBalance;
@@ -119,7 +118,6 @@
 			children = (
 				7C025DD31D15E893007B50B1 /* AccountBalance.swift */,
 				7C025DC41D156EC2007B50B1 /* Provider.swift */,
-				7C025DDF1D16D857007B50B1 /* AccountView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -139,6 +137,16 @@
 				7C025DD91D15EA0B007B50B1 /* AccountBalanceDelegate.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		7C025DE11D17039C007B50B1 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				7C025DE21D170535007B50B1 /* DetailMenuItemView.swift */,
+				7C025DE31D170535007B50B1 /* LoginWindow.xib */,
+				7C025DE41D170535007B50B1 /* MainMenu.xib */,
+			);
+			name = Interface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +211,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C025DB01D156DB8007B50B1 /* Assets.xcassets in Resources */,
-				7C025DB31D156DB8007B50B1 /* MainMenu.xib in Resources */,
-				7C025DDE1D16D406007B50B1 /* LoginWindow.xib in Resources */,
+				7C025DE61D170535007B50B1 /* LoginWindow.xib in Resources */,
+				7C025DE71D170535007B50B1 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,28 +273,17 @@
 			files = (
 				7C025DCE1D159F28007B50B1 /* LoginWindowController.swift in Sources */,
 				7C025DC51D156EC2007B50B1 /* Provider.swift in Sources */,
+				7C025DE51D170535007B50B1 /* DetailMenuItemView.swift in Sources */,
 				7C025DD41D15E893007B50B1 /* AccountBalance.swift in Sources */,
 				7C025DC21D156EA7007B50B1 /* AppPreferences.swift in Sources */,
 				7C025DAE1D156DB8007B50B1 /* AppDelegate.swift in Sources */,
 				7C025DCA1D1571E2007B50B1 /* StatusItemMenuController.swift in Sources */,
-				7C025DE01D16D857007B50B1 /* AccountView.swift in Sources */,
 				7C025DDA1D15EA0B007B50B1 /* AccountBalanceDelegate.swift in Sources */,
 				7C025DC01D156E85007B50B1 /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		7C025DB11D156DB8007B50B1 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7C025DB21D156DB8007B50B1 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7C025DB51D156DB8007B50B1 /* Debug */ = {

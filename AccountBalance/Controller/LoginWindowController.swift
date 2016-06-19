@@ -67,8 +67,9 @@ class LoginWindowController: NSWindowController {
                 switch error {
                 case .Unauthorized:
                     self.infoLabel.stringValue = "Identifiant ou mot de passe incorrect"
-                case .Other(_):
+                case .Other(let error):
                     self.infoLabel.stringValue = "Une erreur est survenue"
+                    print(error)
                 }
             },
             success: { accountBalance in
