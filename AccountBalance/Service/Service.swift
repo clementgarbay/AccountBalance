@@ -19,7 +19,7 @@ enum RequestError: ErrorType {
             .map({(e: AnyObject) -> Int in e as! Int})
             .map({ e in
                 switch e {
-                case 404:
+                case 401:
                     return RequestError.Unauthorized
                 default:
                     return RequestError.Other(error)
