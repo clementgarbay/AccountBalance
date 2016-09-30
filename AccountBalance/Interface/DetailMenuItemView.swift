@@ -9,15 +9,15 @@
 import Cocoa
 
 enum MessageType {
-    case Info
-    case Error
+    case info
+    case error
     
     var color: NSColor {
         switch self {
-        case .Info:
-            return NSColor.blackColor()
-        case .Error:
-            return NSColor.redColor()
+        case .info:
+            return NSColor.black
+        case .error:
+            return NSColor.red
         }
     }
 }
@@ -35,27 +35,27 @@ class DetailMenuItemView: NSView {
     
     let preferences = AppPreferences.sharedInstance
     
-    func showAccountView(accountBalance: AccountBalance) {
-        loginView.hidden = true
-        accountView.hidden = false
-        messageView.hidden = true
+    func showAccountView(_ accountBalance: AccountBalance) {
+        loginView.isHidden = true
+        accountView.isHidden = false
+        messageView.isHidden = true
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.providerImage.image = self.preferences.getProvider().image
             self.userLabel.stringValue = accountBalance.username
         }
     }
     
     func showLoginView() {
-        loginView.hidden = false
-        accountView.hidden = true
-        messageView.hidden = true
+        loginView.isHidden = false
+        accountView.isHidden = true
+        messageView.isHidden = true
     }
     
-    func showMessageView(message: String, messageType: MessageType) {
-        loginView.hidden = true
-        accountView.hidden = true
-        messageView.hidden = false
+    func showMessageView(_ message: String, messageType: MessageType) {
+        loginView.isHidden = true
+        accountView.isHidden = true
+        messageView.isHidden = false
         
         messageLabel.textColor = messageType.color
         messageLabel.stringValue = message

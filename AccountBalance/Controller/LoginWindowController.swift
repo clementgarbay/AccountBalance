@@ -27,11 +27,11 @@ class LoginWindowController: NSWindowController {
         super.windowDidLoad()
         
         loader.startAnimation(nil)
-        providerList.addItemsWithTitles(Provider.getAllProvidersValues())
+        providerList.addItems(withTitles: Provider.getAllProvidersValues())
         
         self.window?.center()
         self.window?.makeKeyAndOrderFront(nil)
-        NSApp.activateIgnoringOtherApps(true)
+        NSApp.activate(ignoringOtherApps: true)
         
 //        if preferences.hasLoggedAccount() {
 //            self.window?.setIsVisible(false)
@@ -41,7 +41,7 @@ class LoginWindowController: NSWindowController {
     // MARK: - Private functions
     
     private func resetLoginForm() {
-        providerList.selectItemAtIndex(0)
+        providerList.selectItem(at: 0)
         usernameField.stringValue = ""
         passwordField.stringValue = ""
         infoLabel.stringValue = ""
@@ -49,32 +49,26 @@ class LoginWindowController: NSWindowController {
     
     // MARK: - IBAction
     
-    @IBAction func login(sender: NSButton) {
+    @IBAction func login(_ sender: NSButton) {
         let username = usernameField.stringValue
         let password = passwordField.stringValue
         let selectedProvider = Provider.getProviderFromName(providerList.titleOfSelectedItem!)
         
         guard selectedProvider != nil && !username.isEmpty && !password.isEmpty else { return }
         
-        sender.enabled = false
-        loader.hidden = false
+        sender.isEnabled = false
+        loader.isHidden = false
         
         Service.fetchData(username, password: password, provider: selectedProvider!,
             failure: { error in
-                sender.enabled = true
-                self.loader.hidden = true
-                            
-                switch error {
-                case .Unauthorized:
-                    self.infoLabel.stringValue = "Identifiant ou mot de passe incorrect"
-                case .Other(let error):
-                    self.infoLabel.stringValue = "Une erreur est survenue"
-                    print(error)
-                }
+                sender.isEnabled = true
+                self.loader.isHidden = true
+                self.infoLabel.stringValue = error.errorDescription
+                print(error)
             },
             success: { accountBalance in
-                sender.enabled = true
-                self.loader.hidden = true
+                sender.isEnabled = true
+                self.loader.isHidden = true
                 self.resetLoginForm()
                 
                 self.delegate?.accountBalanceDidUpdate(accountBalance)

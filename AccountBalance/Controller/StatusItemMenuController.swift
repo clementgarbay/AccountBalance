@@ -16,7 +16,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     @IBOutlet weak var refreshButton: NSMenuItem!
     @IBOutlet weak var logoutButton: NSMenuItem!
     
-    private var statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    private var statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     private let statusIcon = NSImage(named: "StatusItemMenuIcon")!
     private let refreshIcon = NSImage(named: "RefreshIcon")!
     
@@ -25,8 +25,8 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     override func awakeFromNib() {
         // for dark mode
-        statusIcon.template = true
-        refreshIcon.template = true
+        statusIcon.isTemplate = true
+        refreshIcon.isTemplate = true
         
         statusItem.image = statusIcon
         statusItem.menu = statusItemMenu
@@ -39,24 +39,24 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     // MARK: - Protocol function
     
-    func accountBalanceDidUpdate(accountBalance: AccountBalance) {
+    func accountBalanceDidUpdate(_ accountBalance: AccountBalance) {
         showAccountBalanceInStatusItem(accountBalance)
     }
     
     // MARK: - Functions used to modify status item
     
     func showRefreshImageInStatusItem() {
-        refreshButton.enabled = false
+        refreshButton.isEnabled = false
         statusItem.title = ""
         statusItem.image = refreshIcon
         
-        detailMenuItemView.showMessageView("Rafraîchissement en cours...", messageType: .Info)
+        detailMenuItemView.showMessageView("Rafraîchissement en cours...", messageType: .info)
     }
     
-    func showAccountBalanceInStatusItem(accountBalance: AccountBalance) {
-        refreshButton.enabled = true
-        refreshButton.hidden = false
-        logoutButton.hidden = false
+    func showAccountBalanceInStatusItem(_ accountBalance: AccountBalance) {
+        refreshButton.isEnabled = true
+        refreshButton.isHidden = false
+        logoutButton.isHidden = false
 
         statusItem.image = nil
         statusItem.title = accountBalance.currentBalance
@@ -65,9 +65,9 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     }
     
     func clearAccountBalanceInStatusItem() {
-        refreshButton.enabled = false
-        refreshButton.hidden = true
-        logoutButton.hidden = true
+        refreshButton.isEnabled = false
+        refreshButton.isHidden = true
+        logoutButton.isHidden = true
         
         statusItem.title = ""
         statusItem.image = statusIcon
@@ -83,14 +83,10 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
                 self.statusItem.image = self.statusIcon
                 
                 switch error {
-                case .Unauthorized:
+                case .unauthorized:
                     self.showLoginWindow()
-                case .Other(let error):
-                    if let message = error.userInfo["NSLocalizedDescription"] as? String {
-                        self.detailMenuItemView.showMessageView(message, messageType: .Error)
-                    } else {
-                        self.detailMenuItemView.showMessageView("Erreur lors du rafraîchissement du solde", messageType: .Error)
-                    }
+                default:
+                    self.detailMenuItemView.showMessageView(error.errorDescription, messageType: .error)
                     print(error)
                 }
             },
@@ -107,11 +103,11 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
     
     // MARK: - IBAction
     
-    @IBAction func showLoginWindow(sender: NSButton) {
+    @IBAction func showLoginWindow(_ sender: NSButton) {
         showLoginWindow()
     }
 
-    @IBAction func logout(sender: NSMenuItem) {
+    @IBAction func logout(_ sender: NSMenuItem) {
         // Clear saved preferences and reset app to the init state
         preferences.clear()
         clearAccountBalanceInStatusItem()
@@ -119,12 +115,12 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         showLoginWindow()
     }
     
-    @IBAction func refresh(sender: NSMenuItem) {
+    @IBAction func refresh(_ sender: NSMenuItem) {
         updateAccountBalance()
     }
     
-    @IBAction func quit(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
+    @IBAction func quit(_ sender: NSMenuItem) {
+        NSApplication.shared().terminate(self)
     }
     
 }

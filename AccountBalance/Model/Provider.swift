@@ -9,41 +9,41 @@
 import Cocoa
 
 enum Provider: Int, CustomStringConvertible {
-    case Moneweb = 1
-    case Melchior = 2
+    case moneweb = 1
+    case melchior = 2
     
     var description: String {
         switch self {
-        case .Moneweb:
+        case .moneweb:
             return "Moneweb (EMN)"
-        case .Melchior:
+        case .melchior:
             return "Melchior"
         }
     }
     
     var image: NSImage {
         switch self {
-        case .Moneweb:
+        case .moneweb:
             return NSImage(named: "Moneweb-EMN")!
-        case .Melchior:
+        case .melchior:
             return NSImage(named: "Melchior")!
         }
     }
     
-    static let allProviders = [Melchior, Moneweb]
+    static let allProviders = [melchior, moneweb]
     
     static func getAllProvidersValues() -> [String] {
         return Provider.allProviders
             .map { $0.description }
     }
     
-    static func getProviderFromId(id: Int) -> Provider? {
+    static func getProviderFromId(_ id: Int) -> Provider? {
         return allProviders
             .filter { $0.rawValue == id }
             .first
     }
     
-    static func getProviderFromName(name: String) -> Provider? {
+    static func getProviderFromName(_ name: String) -> Provider? {
         return allProviders
             .filter { $0.description == name }
             .first

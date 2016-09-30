@@ -13,7 +13,7 @@ struct AccountBalance {
     var currentBalance: String
     var history: [[String: String]]
     
-    static func fromJSON(json: [String: AnyObject]) -> AccountBalance {
+    static func fromJSON(_ json: [String: AnyObject]) -> AccountBalance {
         let username = json["username"] as! String
         let currentBalance = json["currentBalance"] as! String
         let history = json["history"] as? [[String: String]] ?? []

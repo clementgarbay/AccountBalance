@@ -9,5 +9,5 @@
 import Foundation
 
 protocol AccountBalanceDelegate {
-    func accountBalanceDidUpdate(accountBalance: AccountBalance)
+    func accountBalanceDidUpdate(_ accountBalance: AccountBalance)
 }
