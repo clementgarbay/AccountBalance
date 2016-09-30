@@ -1,15 +1,15 @@
 PODS:
-  - Alamofire (3.4.0)
-  - KeychainSwift (3.0.16)
+  - Alamofire (4.0.1)
+  - KeychainSwift (6.0.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.4)
-  - KeychainSwift (~> 3.0)
+  - Alamofire (~> 4.0)
+  - KeychainSwift (~> 6.0)
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
-  KeychainSwift: a5bb85cd498ce2217b55e055ec59e9268d83384c
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  KeychainSwift: a261364334000afa8fab0894390d5d00dd226d4c
 
-PODFILE CHECKSUM: 39d85e647937cf1a0ff622c8fb5ca0b91537d628
+PODFILE CHECKSUM: 7c15753510a1ec6155a517f173f0292b1376d8d1
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.1.0.rc.2
