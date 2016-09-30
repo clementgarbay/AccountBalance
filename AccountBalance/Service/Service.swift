@@ -10,21 +10,44 @@ import Foundation
 import Alamofire
 import KeychainSwift
 
-enum RequestError: ErrorType {
-    case Unauthorized
-    case Other(NSError)
+enum RequestError: Error {
+    case unauthorized
+    case notFound
+    case other(AFError)
     
-    static func fromNSError(error: NSError) -> RequestError {
-        return error.userInfo["StatusCode"]
-            .map({(e: AnyObject) -> Int in e as! Int})
-            .map({ e in
-                switch e {
+    var errorDescription: String {
+        switch self {
+        case .unauthorized:
+            return "Identifiant ou mot de passe incorrect"
+        case .notFound:
+            return "Serveur non trouvé"
+        case .other(let error):
+            if let message = error.errorDescription {
+                return message
+            }
+            return "Erreur lors du l'appel au serveur"
+        }
+    }
+    
+    static func fromAFError(_ error: AFError) -> RequestError {
+        switch error {
+        case .responseValidationFailed(let reason):
+            switch reason {
+            case .unacceptableStatusCode(let code):
+                switch code {
                 case 401:
-                    return RequestError.Unauthorized
+                    return RequestError.unauthorized
+                case 404:
+                    return RequestError.notFound
                 default:
-                    return RequestError.Other(error)
+                    return RequestError.other(error)
                 }
-            }) ?? RequestError.Other(error)
+            default:
+                return RequestError.other(error)
+            }
+        default:
+            return RequestError.other(error)
+        }
     }
 }
 
@@ -33,8 +56,8 @@ class Service {
     static let preferences = AppPreferences.sharedInstance
     
     static func fetchData(
-        failure fail: (RequestError -> ())? = nil,
-        success succeed: (AccountBalance -> ())? = nil
+        failure fail: ((RequestError) -> ())? = nil,
+        success succeed: ((AccountBalance) -> ())? = nil
     ) {
         
         if self.preferences.hasLoggedAccount() {
@@ -51,33 +74,33 @@ class Service {
                     succeed!(accountBalance)
                 }
             } else {
-                fail!(RequestError.Unauthorized)
+                fail!(RequestError.unauthorized)
             }
         } else {
-            fail!(RequestError.Unauthorized)
+            fail!(RequestError.unauthorized)
         }
     }
     
     static func fetchData(
-        email: String,
+        _ email: String,
         password: String,
         provider: Provider,
-        failure fail: (RequestError -> ())? = nil,
-        success succeed: (AccountBalance -> ())? = nil
+        failure fail: ((RequestError) -> ())? = nil,
+        success succeed: ((AccountBalance) -> ())? = nil
     ) {
         
-        let parameters: [String: AnyObject] = [
+        let parameters: [String: Any] = [
             "identifier" : email,
             "password" : password,
             "provider" : provider.rawValue
         ]
-        
+      
         Alamofire
-            .request(.POST, BASE_URL, parameters: parameters, encoding: .JSON)
+            .request(BASE_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in
                 switch response.result {
-                case .Success(let response):
+                case .success(let response):
                     
                     let json = response as! [String: AnyObject]
                     let accountBalance = AccountBalance.fromJSON(json)
@@ -88,8 +111,8 @@ class Service {
                     }
                     
                     succeed!(accountBalance)
-                case .Failure(let error):
-                    fail!(RequestError.fromNSError(error))
+                case .failure(let error):
+                    fail!(RequestError.fromAFError(error as! AFError))
                 }
         }
     }
