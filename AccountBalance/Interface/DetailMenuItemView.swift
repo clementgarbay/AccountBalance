@@ -15,7 +15,7 @@ enum MessageType {
     var color: NSColor {
         switch self {
         case .info:
-            return NSColor.black
+            return NSColor.controlTextColor
         case .error:
             return NSColor.red
         }

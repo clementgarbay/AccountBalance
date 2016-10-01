@@ -30,7 +30,7 @@ class StatusItemMenuController: NSObjectController, AccountBalanceDelegate {
         
         statusItem.image = statusIcon
         statusItem.menu = statusItemMenu
-    
+        
         loginWindowController = LoginWindowController()
         loginWindowController.delegate = self
         

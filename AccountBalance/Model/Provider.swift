@@ -24,7 +24,9 @@ enum Provider: Int, CustomStringConvertible {
     var image: NSImage {
         switch self {
         case .moneweb:
-            return NSImage(named: "Moneweb-EMN")!
+            let image = NSImage(named: "Moneweb-EMN")!
+            image.isTemplate = true
+            return image
         case .melchior:
             return NSImage(named: "Melchior")!
         }
