@@ -30,9 +30,11 @@ class LoginWindowController: NSWindowController {
         providerList.addItems(withTitles: Provider.getAllProvidersValues())
         
         self.window?.center()
-        self.window?.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
+        self.window?.orderFrontRegardless()
+        self.window?.level = Int(CGWindowLevelForKey(.maximumWindow))
         
+        NSApp.activate(ignoringOtherApps: true)
+ 
 //        if preferences.hasLoggedAccount() {
 //            self.window?.setIsVisible(false)
 //        }
